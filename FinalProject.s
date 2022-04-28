@@ -123,7 +123,6 @@ input           mov r2, #0x8F ; (0,15) ; selector position
                 pop {lr}
                 bx lr
 inc             bl First ; update first available letter
-				bl Last ; update last available letter
 				cmp r3, r5 ; loopback
 				bne forward
 				mov r3, r4
@@ -144,7 +143,6 @@ nextlet         mov r5, #1
 				beq nextlet
 				b updateinc
 dec             bl Last ; update last available letter
-				bl First ; update first available letter
 				cmp r3, r4 ; loopback
 				bne backward
 				mov r3, r5
@@ -221,8 +219,20 @@ finishguess     sub r4, GUESS, #'A'
 				beq gameend
 				cmp LIVES, #0
 				moveq r6, #0
-				beq gameend
-                bx lr
+				bxne lr
+				mov r2, #0x0F ; max length
+                sub r2, LEN ; padding
+                lsr r2, #1 ; floor the value
+                add r2, #0xC0 ; location to write
+				add r2, #1
+				bl LCDCommand
+                mov r5, #00
+ansloop         ldrb r3, [ANS, r5]
+				bl LCDData
+                add r5, #1
+                cmp r5, LEN
+                bne ansloop
+				bl longdelay
 gameend         pop {lr}
                 bx lr
                 
