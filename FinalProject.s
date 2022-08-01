@@ -1,14 +1,5 @@
                 area project, code, readonly
                 export __main
-                    
-                ; TODO
-                ;   * Getting Seed Value (Systick timer?)
-                ;   * Game Over Screen
-                ;       - Input for restart?
-                ;       - Show score?
-                ;   * Lives
-                ;   * Difficulty Levels
-                ;       - Different length words (CHANGE LINES 192 and 258)
 
 CMD             equ 0x80 ; EN=1 RW=0 RS=0
 DATA            equ 0xA0 ; EN=1 RW=0 RS=1
