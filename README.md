@@ -13,3 +13,6 @@ Uses a HD44780U based LCD.
 - 3 buttons
 - 3 220-ohm resistors
 - 26 wires
+
+## Wiring
+<img src="/wiring.png" width="850" alt="wiring_diagram">
